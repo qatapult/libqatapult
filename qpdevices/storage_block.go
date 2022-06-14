@@ -20,6 +20,15 @@ import (
 	"github.com/0x5a17ed/libqatapult/qpoption"
 )
 
+type DiscardOption struct{ slug string }
+
+func (o DiscardOption) String() string { return o.slug }
+
+var (
+	DiscardIgnore = DiscardOption{"ignore"}
+	DiscardUnmap  = DiscardOption{"unmap"}
+)
+
 // BlockDevice defines a new block driver node.
 //
 // <https://man.archlinux.org/man/qemu.1.en#blockdev>
@@ -32,7 +41,7 @@ type BlockDevice struct {
 	ForceShare   qpoption.Option[bool] ``
 	CacheDirect  qpoption.Option[bool] `qp:"name='cache.direct'"`
 	CacheNoFlush qpoption.Option[bool] `qp:"name='cache.no-flush'"`
-	Discard      qpoption.Option[bool] `qp:""`
+	Discard      DiscardOption         `qp:""`
 	DetectZeroes qpoption.Option[bool] `qp:"~kebab"`
 }
 
