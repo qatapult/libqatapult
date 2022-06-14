@@ -20,8 +20,8 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-func New(name string) (l, r *os.File, err error) {
-	socketFds, err := unix.Socketpair(unix.AF_UNIX, unix.SOCK_STREAM|unix.SOCK_CLOEXEC|unix.SOCK_NONBLOCK, 0)
+func New(name string, typ, proto int) (l, r *os.File, err error) {
+	socketFds, err := unix.Socketpair(unix.AF_UNIX, typ|unix.SOCK_CLOEXEC|unix.SOCK_NONBLOCK, proto)
 	if err != nil {
 		return nil, nil, err
 	}

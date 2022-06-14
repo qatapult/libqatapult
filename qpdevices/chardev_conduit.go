@@ -18,6 +18,7 @@ import (
 	"net"
 
 	"go.uber.org/multierr"
+	"golang.org/x/sys/unix"
 
 	"github.com/0x5a17ed/libqatapult"
 	"github.com/0x5a17ed/libqatapult/internal/socketpair"
@@ -48,7 +49,7 @@ func (c *Conduit) GetFiles() []libqatapult.File {
 }
 
 func NewConduit(name string) (c *Conduit, err error) {
-	l, r, err := socketpair.New("conduit:" + name)
+	l, r, err := socketpair.New("conduit:"+name, unix.SOCK_STREAM, 0)
 	defer multierr.AppendInvoke(&err, multierr.Close(l))
 
 	c = &Conduit{name: name, file: libqatapult.NewOsFile(r)}

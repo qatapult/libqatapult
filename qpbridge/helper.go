@@ -61,7 +61,7 @@ func receiveFd(connFd int, name string) (*os.File, error) {
 }
 
 func Open(bridge string) (fd *os.File, err error) {
-	l, r, err := socketpair.New("helper")
+	l, r, err := socketpair.New("helper", unix.SOCK_STREAM, 0)
 	if err != nil {
 		return fd, fmt.Errorf("socketpair: %w", err)
 	}
