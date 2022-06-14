@@ -20,25 +20,11 @@ import (
 	"github.com/google/shlex"
 )
 
-type Device interface {
-	// GetCliArgs returns arguments to be passed to the QEMU
-	// command line for this device.
-	GetCliArgs() ([]string, error)
-}
-
 type File interface {
 	GetIndex() int
 	SetIndex(i int)
 	GetPath() string
 	GetHandle() *os.File
-}
-
-type FilesProvider interface {
-	Device
-
-	// GetFiles provides any files needed by the given device to
-	// function properly.
-	GetFiles() []File
 }
 
 type Config struct {
@@ -58,7 +44,7 @@ type Config struct {
 	DontUseEnv bool
 
 	// Devices are devices to expose to the QEMU Guest.
-	Devices []Device
+	Devices *DeviceGroup
 }
 
 func (c Config) getQemuBin() ([]string, error) {
@@ -79,21 +65,7 @@ func (c Config) getQemuBin() ([]string, error) {
 // them their (predicted) index to them, so they can be passed down
 // to Qemu.
 func (c *Config) collectFiles() []*os.File {
-	var files []File
-	for _, dev := range c.Devices {
-		if dev == nil {
-			continue
-		}
-
-		if p, ok := dev.(FilesProvider); ok {
-			for _, f := range p.GetFiles() {
-				if f == nil {
-					continue
-				}
-				files = append(files, f)
-			}
-		}
-	}
+	files := c.Devices.GetFiles()
 
 	fileHandles := make([]*os.File, len(files))
 	for i, file := range files {
@@ -121,15 +93,11 @@ func (c *Config) cmdLine() (out []string, err error) {
 		out = append(out, "-no-user-config")
 	}
 
-	for _, dev := range c.Devices {
-		if dev != nil {
-			args, err := dev.GetCliArgs()
-			if err != nil {
-				return nil, err
-			}
-			out = append(out, args...)
-		}
+	args, err := c.Devices.GetCliArgs()
+	if err != nil {
+		return nil, err
 	}
+	out = append(out, args...)
 
 	return
 }
