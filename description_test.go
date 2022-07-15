@@ -56,7 +56,7 @@ func TestDescription(t *testing.T) {
 				KeepDefaults:   true,
 				KeepUserConfig: true,
 				QEMUBin:        tt.fields.QEMUBin,
-				Devices:        tt.fields.Devices,
+				Devices:        libqatapult.NewDeviceGroup(tt.fields.Devices...),
 			}
 
 			if got, err := libqatapult.NewDescription(c); assert.NoError(err) {
