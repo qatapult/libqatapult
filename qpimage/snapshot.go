@@ -15,7 +15,7 @@
 package qpimage
 
 import (
-	"github.com/0x5a17ed/libqatapult/internal/exec"
+	"github.com/qatapult/libqatapult/internal/exec"
 )
 
 func SnapshotCreate(imagePath string, snapshot string) error {

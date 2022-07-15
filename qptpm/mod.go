@@ -21,7 +21,7 @@ import (
 	"go.uber.org/multierr"
 	"golang.org/x/sys/unix"
 
-	"github.com/0x5a17ed/libqatapult/qpdevices"
+	"github.com/qatapult/libqatapult/qpdevices"
 )
 
 func runHelper(r *os.File, args []string) (err error) {

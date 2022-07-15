@@ -17,9 +17,9 @@ package qpdevices
 import (
 	"github.com/google/uuid"
 
-	"github.com/0x5a17ed/libqatapult"
-	"github.com/0x5a17ed/libqatapult/internal/serializer"
-	"github.com/0x5a17ed/libqatapult/qpoption"
+	"github.com/qatapult/libqatapult"
+	"github.com/qatapult/libqatapult/internal/serializer"
+	"github.com/qatapult/libqatapult/qpoption"
 )
 
 type NamedDevice interface {

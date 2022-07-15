@@ -21,8 +21,8 @@ import (
 	"go.uber.org/multierr"
 	"golang.org/x/sys/unix"
 
-	"github.com/0x5a17ed/libqatapult/internal/exec"
-	"github.com/0x5a17ed/libqatapult/internal/socketpair"
+	"github.com/qatapult/libqatapult/internal/exec"
+	"github.com/qatapult/libqatapult/internal/socketpair"
 )
 
 type Error struct {

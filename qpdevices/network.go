@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/0x5a17ed/libqatapult"
-	"github.com/0x5a17ed/libqatapult/internal/serializer"
+	"github.com/qatapult/libqatapult"
+	"github.com/qatapult/libqatapult/internal/serializer"
 )
 
 type NetworkPeerDevice struct {

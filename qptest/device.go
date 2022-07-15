@@ -15,7 +15,7 @@
 package qptest
 
 import (
-	"github.com/0x5a17ed/libqatapult"
+	"github.com/qatapult/libqatapult"
 )
 
 func DeviceCliArgs(dev libqatapult.Device) ([]string, error) {

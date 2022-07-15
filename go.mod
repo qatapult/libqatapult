@@ -1,4 +1,4 @@
-module github.com/0x5a17ed/libqatapult
+module github.com/qatapult/libqatapult
 
 go 1.18
 

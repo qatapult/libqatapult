@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/0x5a17ed/libqatapult"
+	"github.com/qatapult/libqatapult"
 )
 
 // MockFile implements the File interface representing an open file.

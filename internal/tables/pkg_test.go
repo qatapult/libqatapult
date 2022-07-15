@@ -19,7 +19,7 @@ import (
 
 	assertpkg "github.com/stretchr/testify/assert"
 
-	"github.com/0x5a17ed/libqatapult/internal/tables"
+	"github.com/qatapult/libqatapult/internal/tables"
 )
 
 func TestTable(t *testing.T) {

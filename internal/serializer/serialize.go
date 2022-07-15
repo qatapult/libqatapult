@@ -23,7 +23,7 @@ import (
 
 	"github.com/0x5a17ed/stragts"
 
-	"github.com/0x5a17ed/libqatapult/internal/tables"
+	"github.com/qatapult/libqatapult/internal/tables"
 )
 
 var (

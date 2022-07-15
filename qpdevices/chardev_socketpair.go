@@ -19,8 +19,8 @@ import (
 
 	"go.uber.org/multierr"
 
-	"github.com/0x5a17ed/libqatapult"
-	"github.com/0x5a17ed/libqatapult/internal/socketpair"
+	"github.com/qatapult/libqatapult"
+	"github.com/qatapult/libqatapult/internal/socketpair"
 )
 
 // SocketPairDevice is a special device that creates a unix.Socketpair

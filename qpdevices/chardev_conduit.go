@@ -20,8 +20,8 @@ import (
 	"go.uber.org/multierr"
 	"golang.org/x/sys/unix"
 
-	"github.com/0x5a17ed/libqatapult"
-	"github.com/0x5a17ed/libqatapult/internal/socketpair"
+	"github.com/qatapult/libqatapult"
+	"github.com/qatapult/libqatapult/internal/socketpair"
 )
 
 // Conduit is a special device that creates a unix.Socketpair

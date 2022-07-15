@@ -17,7 +17,7 @@ package qpimage
 import (
 	"strconv"
 
-	"github.com/0x5a17ed/libqatapult/internal/exec"
+	"github.com/qatapult/libqatapult/internal/exec"
 )
 
 type FormatProvider interface {

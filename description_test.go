@@ -20,8 +20,8 @@ import (
 
 	assertpkg "github.com/stretchr/testify/assert"
 
-	"github.com/0x5a17ed/libqatapult"
-	"github.com/0x5a17ed/libqatapult/qptest"
+	"github.com/qatapult/libqatapult"
+	"github.com/qatapult/libqatapult/qptest"
 )
 
 func TestDescription(t *testing.T) {

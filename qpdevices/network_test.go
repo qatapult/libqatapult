@@ -19,9 +19,9 @@ import (
 
 	assertpkg "github.com/stretchr/testify/assert"
 
-	"github.com/0x5a17ed/libqatapult"
-	"github.com/0x5a17ed/libqatapult/qpdevices"
-	"github.com/0x5a17ed/libqatapult/qptest"
+	"github.com/qatapult/libqatapult"
+	"github.com/qatapult/libqatapult/qpdevices"
+	"github.com/qatapult/libqatapult/qptest"
 )
 
 func TestNetworkTAPPeerDevice(t *testing.T) {

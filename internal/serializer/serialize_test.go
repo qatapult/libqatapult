@@ -20,10 +20,10 @@ import (
 
 	assertpkg "github.com/stretchr/testify/assert"
 
-	"github.com/0x5a17ed/libqatapult"
-	"github.com/0x5a17ed/libqatapult/internal/serializer"
-	"github.com/0x5a17ed/libqatapult/qpoption"
-	"github.com/0x5a17ed/libqatapult/qptest"
+	"github.com/qatapult/libqatapult"
+	"github.com/qatapult/libqatapult/internal/serializer"
+	"github.com/qatapult/libqatapult/qpoption"
+	"github.com/qatapult/libqatapult/qptest"
 )
 
 func TestGetCliArgs_EmptyValuesOmitted(t *testing.T) {
