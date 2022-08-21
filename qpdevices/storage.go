@@ -33,16 +33,13 @@ var (
 // StorageDevice represents a generic storage device.
 type StorageDevice struct {
 	BaseDevice
+	BootableDevice
 
 	// Drive is the underlying BlockDevice name to be used as the backend.
 	Drive Reference
 
 	// Bus is the bus this StorageDevice will be connected to.
 	Bus string
-
-	// BootIndex is used to determine the order in which firmware
-	// will consider devices for booting the guest OS.
-	BootIndex qpoption.Option[int]
 }
 
 func (d StorageDevice) GetName() string {

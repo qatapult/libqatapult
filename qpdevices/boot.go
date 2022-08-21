@@ -16,6 +16,7 @@ package qpdevices
 
 import (
 	"github.com/qatapult/libqatapult/internal/serializer"
+	"github.com/qatapult/libqatapult/qpoption"
 )
 
 type Boot struct {
@@ -23,6 +24,16 @@ type Boot struct {
 
 	Order string
 	Once  string
+}
+
+type BootableDevice struct {
+	// BootIndex is used to determine the order in which firmware
+	// will consider devices for booting the guest OS.
+	BootIndex qpoption.Option[int]
+}
+
+func NewBootableDevice(bootIndex int) BootableDevice {
+	return BootableDevice{BootIndex: qpoption.Value(bootIndex)}
 }
 
 func (d Boot) GetCliArgs() ([]string, error) {

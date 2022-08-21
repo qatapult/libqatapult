@@ -94,9 +94,12 @@ func NewNetworkTAPPeerDevice(name string, queues []libqatapult.File) *NetworkTAP
 //
 // A NetworkDevice needs to be backed by a NetworkPeerDevice peer.
 type NetworkDevice struct {
-	_          any              `qp:"opt=device"`
-	Index      uint32           `qp:"~skip"`
-	Model      string           `qp:"~unnamed"`
+	Model string `qp:"~unnamed"`
+
+	BootableDevice
+
+	Index uint32 `qp:"~skip"`
+
 	MACAddress net.HardwareAddr `qp:"name=mac"`
 	Peer       Reference        `qp:"name=netdev"`
 }
@@ -113,5 +116,5 @@ func (d NetworkDevice) GetCliArgs() ([]string, error) {
 		d.MACAddress = macBuf.Bytes()
 	}
 
-	return serializer.GetCliArgs(d)
+	return serializer.GetCliArgs(d, serializer.WithOptionName("device"))
 }

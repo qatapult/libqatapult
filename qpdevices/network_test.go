@@ -24,6 +24,42 @@ import (
 	"github.com/qatapult/libqatapult/qptest"
 )
 
+func TestNetworkDevice(t *testing.T) {
+	type args struct {
+		dev qpdevices.NetworkDevice
+	}
+	tt := []struct {
+		name    string
+		args    args
+		want    []string
+		wantErr assertpkg.ErrorAssertionFunc
+	}{
+		{"Bootable", args{
+			dev: qpdevices.NetworkDevice{
+				Model:          "e1000",
+				BootableDevice: qpdevices.NewBootableDevice(1),
+			},
+		}, []string{"-device", "e1000,bootindex=1,mac=0e:00:00:00:00:01"}, assertpkg.NoError},
+
+		{"MACFromIndex", args{
+			dev: qpdevices.NetworkDevice{
+				Model: "e1000",
+				Index: 34,
+			},
+		}, []string{"-device", "e1000,mac=0e:00:00:00:00:23"}, assertpkg.NoError},
+	}
+	for _, tc := range tt {
+		t.Run(tc.name, func(t *testing.T) {
+			got, err := qptest.DeviceCliArgs(tc.args.dev)
+
+			if !tc.wantErr(t, err) {
+				return
+			}
+			assertpkg.Equal(t, tc.want, got)
+		})
+	}
+}
+
 func TestNetworkTAPPeerDevice(t *testing.T) {
 	type args struct {
 		name   string
