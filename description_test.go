@@ -26,8 +26,8 @@ import (
 
 func TestDescription(t *testing.T) {
 	type fields struct {
-		QEMUBin []string
-		Devices []libqatapult.Device
+		Emulator []string
+		Devices  []libqatapult.Device
 	}
 	tests := []struct {
 		name   string
@@ -37,7 +37,7 @@ func TestDescription(t *testing.T) {
 		{"no-arguments", fields{}, "qemu-system-x86_64"},
 
 		{"bin-override", fields{
-			QEMUBin: []string{"qemu-system-i386", "-help"},
+			Emulator: []string{"qemu-system-i386", "-help"},
 		}, "qemu-system-i386 -help"},
 
 		{"one-simple-device", fields{Devices: []libqatapult.Device{
@@ -55,7 +55,7 @@ func TestDescription(t *testing.T) {
 			c := &libqatapult.Config{
 				KeepDefaults:   true,
 				KeepUserConfig: true,
-				QEMUBin:        tt.fields.QEMUBin,
+				Emulator:       tt.fields.Emulator,
 				Devices:        libqatapult.NewDeviceGroup(tt.fields.Devices...),
 			}
 

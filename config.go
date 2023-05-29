@@ -28,8 +28,12 @@ type File interface {
 }
 
 type Config struct {
-	// QEMUBin describes how to invoke the QEMU binary.
-	QEMUBin []string
+	// Emulator describes how to invoke the emulator.  This is a
+	// slice where the first element of the slice describes the
+	// path to the executable of the emulator executable and all
+	// other slice elements following the first element are passed
+	// to the emulator executable as arguments.
+	Emulator []string
 
 	// KeepDefaults tells qatapult to launch QEMU keeping
 	// their default configuration.
@@ -47,15 +51,15 @@ type Config struct {
 	Devices *DeviceGroup
 }
 
-func (c Config) getQemuBin() ([]string, error) {
+func (c *Config) emulator() ([]string, error) {
 	if !c.DontUseEnv {
-		if qemuBin := os.Getenv("QEMU_BIN"); qemuBin != "" {
+		if qemuBin := os.Getenv("QATAPULT_EMULATOR"); qemuBin != "" {
 			return shlex.Split(qemuBin)
 		}
 	}
 
-	if len(c.QEMUBin) > 0 {
-		return c.QEMUBin, nil
+	if len(c.Emulator) > 0 {
+		return c.Emulator, nil
 	}
 
 	return []string{"qemu-system-x86_64"}, nil
@@ -79,7 +83,7 @@ func (c *Config) collectFiles() []*os.File {
 // cmdLine constructs the command line arguments to be passed down
 // to qemu.
 func (c *Config) cmdLine() (out []string, err error) {
-	parts, err := c.getQemuBin()
+	parts, err := c.emulator()
 	if err != nil {
 		return nil, err
 	}
