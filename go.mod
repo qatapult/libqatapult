@@ -1,6 +1,6 @@
 module github.com/qatapult/libqatapult
 
-go 1.18
+go 1.20
 
 require (
 	github.com/0x5a17ed/stragts v0.1.1
