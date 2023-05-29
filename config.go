@@ -35,6 +35,11 @@ type Config struct {
 	// to the emulator executable as arguments.
 	Emulator []string
 
+	// Environment describes the environment that will be passed
+	// to the emulator binary. The semantics of the Env field
+	// in exec.Cmd apply here.
+	Environment []string
+
 	// KeepDefaults tells qatapult to launch QEMU keeping
 	// their default configuration.
 	KeepDefaults bool

@@ -55,6 +55,7 @@ func YeetDescription(ctx context.Context, d *Description, opts ...YeetOption) (*
 	args := d.CmdLine()
 
 	cmd := exec.CommandContext(ctx, args[0], args[1:]...)
+	cmd.Env = d.environ
 	cmd.ExtraFiles = d.Files()
 	for _, opt := range opts {
 		opt(cmd)

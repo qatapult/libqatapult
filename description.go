@@ -20,6 +20,7 @@ import (
 
 // Description describes VM arguments from a Config.
 type Description struct {
+	environ   []string
 	files     []*os.File
 	arguments []string
 }
@@ -30,7 +31,8 @@ func (d Description) CmdLine() []string { return d.arguments }
 // NewDescription creates a new Description from the provided Config.
 func NewDescription(conf *Config) (d *Description, err error) {
 	d = &Description{
-		files: conf.collectFiles(),
+		environ: conf.Environment,
+		files:   conf.collectFiles(),
 	}
 
 	args, err := conf.cmdLine()
